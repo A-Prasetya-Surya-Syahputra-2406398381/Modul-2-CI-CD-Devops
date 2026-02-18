@@ -13,7 +13,7 @@ import java.util.Iterator;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductRepositoryTest {    
+public class ProductRepositoryTest {
 
     private static final String FULL_PRODUCT_ID = "eb558e9f-1c39-460e-8860-71af6af63bd6";
     private static final String DELETE_ID = "id-akan-dihapus";

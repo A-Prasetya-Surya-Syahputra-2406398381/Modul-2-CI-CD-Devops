@@ -1,21 +1,12 @@
-### Refleksi 1
+### Refleksi
 
-Clean code dalam source code:
+List Code Quality Issue yang dihadapi:
 
-- Menerapkan nama variable dan method yang memberi konteks yang jelas (Meaningful Name)
-- Method pada Controller hanya melakukan satu tugas (Single Responsibility)
+- AvoidDuplicateLiterals, terjadi ketika literal berulang kali diketik dan muncul berkali kali
+- EmptyStatementNotInLoop, terjadi ketika terdapat semicolon yang tidak mengakhiri apa apa (statement kosong)
 
-Secure Coding:
-- Menerapkan input validasi saat update product
+Untuk AvoidDuplicateLiterals, strategi saya untuk memperbaikinya adalah mendaklarasikan variable konstan untuk menampung literal tersebut dan menggunakan variable tersebut
 
-Bisa lebih lanjut improve source code dengan menerapkan secure coding seperti Authentication, Authorization, Output data Encoding, dan Input data validation
+Untuk EmptyStatementNotInLoop, saya menghapus semicolon yang memiliki empty statement
 
-### Refleksi 2
-
-Tidak ada angka pasti untuk jumlah unit test, prinsip utamanya adalah menguji seluruh alur logika. Unit testing bisa dirasa cukup jika mayoritas skenario alur logika sudah di uji dengan melihat persentase coverage testing.
-
-Isu yang mungkin bangkit dari pembuatan test tersebut adalah:
-
-- Code duplication, jika mengulang logika setup yang sama pada beberapa kelas membuat kode sulit dipelihara apabila terdapat perubahan di set upnya
-
-Improvisasi yang mungkin dilakukan adalah membuat sebuah base class yang berisi setup common dan test lain hanya melakukan extend ke class tersebut
+Implementasi tersebut sudah memenuhi kriteria Continuous Integration karena setiap perubahan kode pada semua branch secara otomatis melakukan unit testing dan analisis untuk menjaga kualitas kode. Namun, aspek Continuous Deployment belum sepenuhnya terpenuhi karena proses rilis ke produksi (Koyeb) hanya berupa perintah echo dan belum merupakan skrip deployment yang mengeksekusi pembaruan aplikasi secara nyata. Skrip Workflow tersebut tidak benar benar memverifikasi apakah deployment di Koyeb berhasil
