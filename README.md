@@ -1,12 +1,31 @@
 ### Refleksi
 
-List Code Quality Issue yang dihadapi:
+Prinsip yang diterapkan
 
-- AvoidDuplicateLiterals, terjadi ketika literal berulang kali diketik dan muncul berkali kali
-- EmptyStatementNotInLoop, terjadi ketika terdapat semicolon yang tidak mengakhiri apa apa (statement kosong)
+Single Responsibility Principle (SRP)
 
-Untuk AvoidDuplicateLiterals, strategi saya untuk memperbaikinya adalah mendaklarasikan variable konstan untuk menampung literal tersebut dan menggunakan variable tersebut
+Setiap kelas memiliki satu tujuannya sendiri, Contohnya kelas kelas repositori hanya bertanggung jawab untuk persistence logic, dan kelas servis menghandle logika bisnis, Controller menghandle HTTP request dan routing.
 
-Untuk EmptyStatementNotInLoop, saya menghapus semicolon yang memiliki empty statement
+Open-Closed Principle (OCP)
 
-Implementasi tersebut sudah memenuhi kriteria Continuous Integration karena setiap perubahan kode pada semua branch secara otomatis melakukan unit testing dan analisis untuk menjaga kualitas kode. Namun, aspek Continuous Deployment belum sepenuhnya terpenuhi karena proses rilis ke produksi (Koyeb) hanya berupa perintah echo dan belum merupakan skrip deployment yang mengeksekusi pembaruan aplikasi secara nyata. Skrip Workflow tersebut tidak benar benar memverifikasi apakah deployment di Koyeb berhasil
+Service menggunakan interface untuk mendefinisikan behavior. Ini memungkinkan aplikasi untuk diextend dengan implementasi baru.
+
+Liskov Substitution Principle (LSP)
+
+Tidak ada kelas yang melanggar
+
+Interface Segregation Principle (ISP)
+
+Projek ini menggunakan interface spesifik untuk domain yang spesifik. CarService menyediakan method yang unik terhadap manajemen mobil sedangkan ProductService menghandle aksi umum produk. Client yang berinteraksi dengan Car tidak akan dipaksa untuk mengimplementasi method dari productService
+
+Dependency Inversion Principle (DIP)
+
+Controller tingkat tinggi tidak depends on low-level-concrete implementations. Contohnya CarController inject CarService (interface) daripada implementasinya
+
+2. Advantages of the Current State
+
+   Testability: Karena CarController sekarang bergantung pada Abstraksi (CarService) dan bukan implementasi konkret, Kita dapat melakukan Unit Testing dengan sangat mudah menggunakan Mock tanpa menyentuh data layer yang asli.
+
+   Maintainability: Karena setiap kelas memiliki satu tanggung jawab, maka debugging akan jauh lebih cepat. Jika suatu fungsi berkaitan dengan penyimpanan mobil rusak, kita tahu pasti error pasti terjadi di CarRepository
+
+
